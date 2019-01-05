@@ -13,62 +13,62 @@ var json = {
             title: 'How would you rate yourself on the parameters below?'
             collumns: [
                 {
-                    value: 1,
-                    text: 'Strongly Disagree'
+                    rating: 1,
+                    answer: 'Strongly Disagree'
                 }, {
-                    value: 2,
-                    text: 'Disagree'
+                    rating: 2,
+                    answer: 'Disagree'
                 }, {
-                    value: 3,
-                    text: 'Neutral'
+                    rating: 3,
+                    answer: 'Neutral'
                 }, {
-                    value: 4,
-                    text: 'Agree'
+                    rating: 4,
+                    answer: 'Agree'
                 }, {
-                    value: 5,
-                    text: 'Strongly Agree'
+                    rating: 5,
+                    answer: 'Strongly Agree'
                 }
             ],
             rows: [
                 {
-                    value: 'dog person',
-                    text: 'I like dogs'
+                    title: 'dog person',
+                    question: 'I like dogs'
                 },
                 {
-                    value: 'cat person',
-                    text: 'I like cats'
+                    title: 'cat person',
+                    question: 'I like cats'
                 },
                 {
-                    value: 'Extroversion',
-                    text: 'I am an outgoing person'
+                    title: 'Extroversion',
+                    question: 'I am an outgoing person'
                 },
                 {
-                    value: 'activities',
-                    text: 'I would rather stay in and watch a movie than go partying'
+                    title: 'activities',
+                    question: 'I would rather stay in and watch a movie than go partying'
                 },
                 {
-                    value: 'Bluntness',
-                    text: 'I always say what I feel'
+                    title: 'Bluntness',
+                    question: 'I always say what I feel'
                 },
                 {
-                    value: 'Openess',
-                    text: 'I make friends easily'
+                    title: 'Openess',
+                    question: 'I make friends easily'
                 },
                 {
-                    value: 'Optamisim',
-                    text: 'I always look for the silver lining'
+                    title: 'Optamisim',
+                    question: 'I always look for the silver lining'
                 },
                 {
-                    value: 'Drama',
-                    text: 'I try to avoid unnecessary conflict'
+                    title: 'Drama',
+                    question: 'I try to avoid unnecessary conflict'
                 },
                 {
-                    value: 'Empathy',
-                    text: 'I can tell when someone is upset'
+                    title: 'Empathy',
+                    question: 'I can tell when someone is upset'
                 },
                 {
-                    value: 'Ambition',
-                    text: 'You can always find ways to improve yourself'
+                    title: 'Ambition',
+                    question: 'You can always find ways to improve yourself'
                 }
             ]
         }
