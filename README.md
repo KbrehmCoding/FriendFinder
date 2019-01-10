@@ -17,6 +17,8 @@ Thought Process (ToDo list)
         remember how to make a quiz like form
         ten question with the stongly agree strongly disagree format
         convert answers into an array of integers
+        store data
+            need to figure out how to refer to the data entered on the survey in my js file
         compare user array to json array
             calcualte difference for each question
             most similar friend is the one with the lowest difference
