@@ -6,32 +6,14 @@ const server = app.listening(3000, listening);
 app.use(express.static('public'));
 
 
-title: 'dog person',
-    question: 'I like dogs'
+var PORT = process.env.PORT || 8080;
 
-title: 'cat person',
-    question: 'I like cats'
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-title: 'Extroversion',
-    question: 'I am an outgoing person'
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 
-title: 'activities',
-    question: 'I would rather stay in and watch a movie than go partying'
-
-title: 'Bluntness',
-    question: 'I always say what I feel'
-
-title: 'Openess',
-    question: 'I make friends easily'
-
-title: 'Optamisim',
-    question: 'I always look for the silver lining'
-
-title: 'Drama',
-    question: 'I try to avoid unnecessary conflict'
-
-title: 'Empathy',
-    question: 'I can tell when someone is upset'
-
-title: 'Ambition',
-    question: 'You can always find ways to improve yourself'
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+})
