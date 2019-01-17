@@ -7,12 +7,12 @@ var friendsData = require('app/data/friends.js');
 module.exports = function (app) {
 
 
-    app.get('/api/friends', function (req, res) {
+    app.get('/app/friends', function (req, res) {
         res.json(tableData);
     });
 
 
-    app.post('/api/friends', function (req, res) {
+    app.post('/app/friends', function (req, res) {
         if (tableData.length < 5) {
             tableData.push(req.body);
             res.json(true);
