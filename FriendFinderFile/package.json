@@ -1,5 +1,5 @@
 {
-    "name": "bamazon",
+    "name": "FriendFinder",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -8,15 +8,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/KbrehmCoding/Bamazon.git"
+        "url": "git+https://github.com/KbrehmCoding/FriendFinder.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/KbrehmCoding/Bamazon/issues"
+        "url": "https://github.com/KbrehmCoding/FriendFinder/issues"
     },
-    "homepage": "https://github.com/KbrehmCoding/Bamazon#readme",
+    "homepage": "https://github.com/KbrehmCoding/FriendFinder#readme",
     "dependencies": {
         "express": "^4.16.4",
         "path": "^0.12.7"
