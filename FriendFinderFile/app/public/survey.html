@@ -249,7 +249,7 @@
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
-            function validateForm() {
+            function filledForm() {
                 var filledIn = true;
                 $(".control-form").each(function () {
                     if ($(this).val() === "") {
@@ -266,10 +266,10 @@
                 return filledIn;
             }
 
-            if (validateForm()) {
+            if (filledForm()) {
                 var userData = {
                     name: $("#name").val(),
-                    photo: $("#imageLink").val(),
+                    image: $("#imageLink").val(),
                     scores: [
                         $("#question1").val(),
                         $("#question2").val(),
@@ -284,7 +284,7 @@
                     ]
                 };
 
-                $.post("/api/friends", userData, function (data) {
+                $.post("/api/public/friends", userData, function (data) {
 
                     $("#friendName").text(data.name);
                     $("#friendImg").attr("src", data.imageLink);
