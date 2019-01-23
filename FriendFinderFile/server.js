@@ -8,7 +8,7 @@ const server = app.listen(PORT, () => {
     console.log('App listening on PORT: ' + PORT);
 });
 
-app.use(express.static('public'));
+app.use('/js', express.static(__dirname + '/app/public/js'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

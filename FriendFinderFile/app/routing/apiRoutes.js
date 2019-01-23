@@ -5,22 +5,34 @@
 
 module.exports = app => {
     app.get('/api/friends', (req, res) => {
-        const friendsData = require('../data/friends');
-        res.json(friendsData);
+        res.json(getFriendsData());
     });
-
 
     app.post('/api/friends', (req, res) => {
-        //guessing this is where the math logic will need to go when calculating the most compatible friends
-        // if (friendsData  ) {
-        //     friendsData.push(req.body);
-        //     res.json(true);
-        // } else {
-        //     friendsData.push(req.body);
-        //     res.json(false);
-        // }
+        // this post is supposed to take the information from the users survey answers and store them in the friends.js file in the data folder
+        // it is also supposed to do the math to compare the users survey answers to the ones already stored in the friends.js file
+        // guessing this is where the math logic will need to go when calculating the most compatible friends
+        const friend = req.body;
+        const compatibleFriend = calculateFriendCompatibility(friend);
+        addFriendToDataFile(friend);
+        res.send(compatibleFriend);
     });
 };
+
+function getFriendsData() {
+    return require('../data/friends');
+}
+
+function calculateFriendCompatibility(friend) {
+    const friends = getFriendsData();
+    // TODO: loop through friends a compare user scores
+    // TODO: return most compatible friend
+    return friends[0];
+}
+
+function addFriendToDataFile(friend) {
+    // TODO: load data, update data, and save data to the friend.js file
+}
 
 // Determine the user's most compatible friend using the following as a guide:
 // Convert each user's results into a simple array of numbers (ex: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]).
@@ -28,9 +40,7 @@ module.exports = app => {
 
 // Example:
 // User 1: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]
-
 // User 2: [3, 2, 6, 4, 5, 1, 2, 5, 4, 1]
-
 // Total Difference: 2 + 1 + 2 = 5
 
 // Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both 5-3 and 3-5 as 2, and so on.

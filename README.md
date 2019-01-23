@@ -23,3 +23,18 @@ Thought Process (ToDo list)
             calcualte difference for each question
             most similar friend is the one with the lowest difference
         display 'friends' with the most similar arrays (as a modal pop up)
+
+
+var surveyArray;
+
+function surveyResults(){
+    $.ajax({
+        url: 'friends.js',
+        type: 'get',
+        dataType : 'json',
+        success: function(data) {
+            surveyArray = data;
+            console.log(surveyArray[0].name.image.scores);
+        }
+    });
+}
