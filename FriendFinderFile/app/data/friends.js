@@ -31,7 +31,7 @@ function surveyResults(){
         dataType : 'json',
         success: function(data) {
             surveyArray = data;
-            console.log(surveyArray[0].name.image.scores); // bob
+            console.log(surveyArray[0].name.image.scores);
         }
     });
 }
