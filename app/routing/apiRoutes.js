@@ -25,7 +25,32 @@ function getFriendsData() {
 
 function calculateFriendCompatibility(friend) {
     const friends = getFriendsData();
-    // TODO: loop through friends a compare user scores
+    var userData = req.body;
+    var mostCompatible = "";
+    var userScore = userData.scores;
+    var friendScore = "";
+    var difference = userScore[i] - friendScore[i];
+    var totalDifference;
+
+    for (var i = 0; i < friends.length; i++) {
+        var currentFriend = friends[i];
+        totalDifference = 0;
+        // TODO: loop through friends a compare user scores
+        // I might actually need an if than statement to do the math on each question before moving onto the next friend
+        // This is not the final solution, just working it out
+        //I need to take the difference between the scores for each question
+        //then add all the differences togther to get the final compatibibity score for that friend
+        for (var i = 0; i < friends.length; i++) {
+            totalDifference += Math.abs(parseInt(UserScore) - parseInt(friendScore));
+        }
+        if (totalDifference <= mostCompatible.difference) {
+            mostCompatible.name = currentFriend.name;
+            mostCompatible.image = currentFriend.image;
+            mostCompatible.difference = totalDifference;
+        }
+    }
+    // compare the differnece with mostCompatible, if totalDiffenrence is smaller then it becomes the new mostCompatible vlaue
+    // need a way to store the score with the name of the friend
     // TODO: return most compatible friend
     return friends[0];
 }
@@ -47,8 +72,3 @@ function addFriendToDataFile(friend) {
 // The closest match will be the user with the least amount of difference.
 // Once you've found the current user's most compatible friend, display the result as a modal pop-up.
 // The modal should display both the name and picture of the closest match.
-
-
-
-
-

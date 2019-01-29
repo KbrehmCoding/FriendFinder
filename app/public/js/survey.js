@@ -1,4 +1,16 @@
 
+$(document.body).on('click', '.dropdown-menu li', function (event) {
+
+    var $target = $(event.currentTarget);
+
+    $target.closest('.btn-group')
+        .find('[data-bind="label"]').text($target.text())
+        .end()
+        .children('.dropdown-toggle').dropdown('toggle');
+
+    return false;
+});
+
 $("#submit").on("click", function (event) {
     event.preventDefault();
 
@@ -45,3 +57,4 @@ $("#submit").on("click", function (event) {
         alert("Looks like you didn't fill it out completly, please fill in all fields.");
     }
 });
+
