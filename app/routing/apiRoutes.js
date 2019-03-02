@@ -1,12 +1,11 @@
-var friends = require("../data/friends");
-var path = require('path');
+const path = require('path');
+
 // Your apiRoutes.js file should contain two routes:
 // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
 // A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
 // You should save your application's data inside of app/data/friends.js as an array of objects.
 
-
-module.exports = function(app){
+module.exports = app => {
     app.get('/api/friends', (req, res) => {
         res.json(getFriendsData());
     });
@@ -15,6 +14,7 @@ module.exports = function(app){
         // this post is supposed to take the information from the users survey answers and store them in the friends.js file in the data folder
         // it is also supposed to do the math to compare the users survey answers to the ones already stored in the friends.js file
         // guessing this is where the math logic will need to go when calculating the most compatible friends
+        const friends = getFriendsData();
         const compatibleFriend = calculateFriendCompatibility(friends);
         addFriendToDataFile(friends);
         res.send(compatibleFriend);
