@@ -1,15 +1,15 @@
 
-$(document.body).on('click', '.dropdown-menu li', function (event) {
+// $(document.body).on('click', '.select', function (event) {
 
-    var $target = $(event.currentTarget);
+//     var $target = $(event.currentTarget);
 
-    $target.closest('.btn-group')
-        .find('[data-bind="label"]').text($target.text())
-        .end()
-        .children('.dropdown-toggle').dropdown('toggle');
+//     $target.closest('.btn-group')
+//         .find('[data-bind="label"]').text($target.text())
+//         .end()
+//         .children('.dropdown-toggle').dropdown('toggle');
 
-    return false;
-});
+//     return false;
+// });
 
 $("#submit").on("click", function (event) {
     event.preventDefault();
