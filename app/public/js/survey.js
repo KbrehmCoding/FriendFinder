@@ -1,16 +1,3 @@
-
-// $(document.body).on('click', '.select', function (event) {
-
-//     var $target = $(event.currentTarget);
-
-//     $target.closest('.btn-group')
-//         .find('[data-bind="label"]').text($target.text())
-//         .end()
-//         .children('.dropdown-toggle').dropdown('toggle');
-
-//     return false;
-// });
-
 $("#submit").on("click", function (event) {
     event.preventDefault();
 
@@ -54,7 +41,6 @@ $("#submit").on("click", function (event) {
             $("#results-modal").modal("toggle");
         });
     } else {
-        alert("Looks like you didn't fill it out completly, please fill in all fields.");
+        alert("Looks like you didn't fill it out completely, please fill in all fields.");
     }
 });
-
