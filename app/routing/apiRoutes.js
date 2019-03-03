@@ -12,8 +12,7 @@ module.exports = app => {
 
     app.post('/api/friends', (req, res) => {
         // this post is supposed to take the information from the users survey answers and store them in the friends.js file in the data folder
-        // it is also supposed to do the math to compare the users survey answers to the ones already stored in the friends.js file
-        // guessing this is where the math logic will need to go when calculating the most compatible friends
+        // it also does the math to compare the users survey answers to the ones already stored in the friends.js file
         const friends = getFriendsData();
         const compatibleFriend = calculateFriendCompatibility(friends);
         addFriendToDataFile(friends);
@@ -36,13 +35,11 @@ function calculateFriendCompatibility(friends) {
     for (var i = 0; i < friends.length; i++) {
         var currentFriend = friends[i];
         totalDifference = 0;
-        // TODO: loop through friends a compare user scores
-        // I might actually need an if than statement to do the math on each question before moving onto the next friend
-        // This is not the final solution, just working it out
-        //I need to take the difference between the scores for each question
-        //then add all the differences togther to get the final compatibibity score for that friend
+        // TODO: loop through friends to compare user scores
+        // I need to take the difference between the scores for each question
+        // Then add all the differences together to get the final compatibility score for that friend
         for (var i = 0; i < friends.length; i++) {
-            totalDifference += Math.abs(parseInt(UserScore) - parseInt(friendScore));
+            totalDifference += Math.abs(parseInt(userScore) - parseInt(friendScore));
         }
         if (totalDifference <= mostCompatible.difference) {
             mostCompatible.name = currentFriend.name;
@@ -50,8 +47,8 @@ function calculateFriendCompatibility(friends) {
             mostCompatible.difference = totalDifference;
         }
     }
-    // compare the differnece with mostCompatible, if totalDiffenrence is smaller then it becomes the new mostCompatible vlaue
-    // need a way to store the score with the name of the friend
+    // Compare the difference with mostCompatible, if totalDifference is smaller then it becomes the new mostCompatible value
+    // Need a way to store the score with the name of the friend
     // TODO: return most compatible friend
     return friends[0];
 }
