@@ -5,7 +5,7 @@ function filledForm() {
             filledIn = false;
         }
     });
-    $('.answersGiven').each(function () {
+    $('custom-select').each(function () {
         if ($(this).val() === '') {
             filledIn = false;
         }
