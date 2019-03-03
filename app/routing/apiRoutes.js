@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 // Your apiRoutes.js file should contain two routes:
@@ -11,62 +12,37 @@ module.exports = app => {
     });
 
     app.post('/api/friends', (req, res) => {
-        // this post is supposed to take the information from the users survey answers and store them in the friends.js file in the data folder
-        // it also does the math to compare the users survey answers to the ones already stored in the friends.js file
-        const friends = getFriendsData();
-        const compatibleFriend = calculateFriendCompatibility(friends);
-        addFriendToDataFile(friends);
-        res.send(compatibleFriend);
+        if (!validateFriendRequestBody(req.body)) {
+            return res.send({ error: true });
+        }
+        const friend = getFriendFromRequestBody(req.body);
+        addFriendToDataFile(friend);
+        res.send(friend);
+        // res.send(getMostCompatibleFriend(friend));
     });
 };
 
 function getFriendsData() {
-    return require('../data/friends');
+    return JSON.parse(fs.readFileSync(path.join(__dirname, '../data/friends.js'), 'utf8'));
 }
 
-function calculateFriendCompatibility(friends) {
-    var userData = req.body;
-    var mostCompatible = "";
-    var userScore = userData.scores;
-    var friendScore = "";
-    var difference = userScore[i] - friendScore[i];
-    var totalDifference = "";
+function validateFriendRequestBody(requestBody) {
+    if (!requestBody.name || !requestBody.name.length) return false;
+    if (!requestBody.photo || !requestBody.photo.length) return false;
+    if (!requestBody.scores || requestBody.scores.length !== 10) return false;
+    return true;
+}
 
-    for (var i = 0; i < friends.length; i++) {
-        var currentFriend = friends[i];
-        totalDifference = 0;
-        // TODO: loop through friends to compare user scores
-        // I need to take the difference between the scores for each question
-        // Then add all the differences together to get the final compatibility score for that friend
-        for (var i = 0; i < friends.length; i++) {
-            totalDifference += Math.abs(parseInt(userScore) - parseInt(friendScore));
-        }
-        if (totalDifference <= mostCompatible.difference) {
-            mostCompatible.name = currentFriend.name;
-            mostCompatible.image = currentFriend.image;
-            mostCompatible.difference = totalDifference;
-        }
-    }
-    // Compare the difference with mostCompatible, if totalDifference is smaller then it becomes the new mostCompatible value
-    // Need a way to store the score with the name of the friend
-    // TODO: return most compatible friend
-    return friends[0];
+function getFriendFromRequestBody(requestBody) {
+    return {
+        name: requestBody.name,
+        photo: requestBody.photo,
+        scores: requestBody.scores.map(Number),
+    };
 }
 
 function addFriendToDataFile(friend) {
-    // TODO: load data, update data, and save data to the friend.js file
+    const friends = getFriendsData();
+    friends.push(friend);
+    fs.writeFileSync(path.join(__dirname, '../data/friends.js'), JSON.stringify(friends, null, 4));
 }
-
-// Determine the user's most compatible friend using the following as a guide:
-// Convert each user's results into a simple array of numbers (ex: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]).
-// With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the totalDifference.
-
-// Example:
-// User 1: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]
-// User 2: [3, 2, 6, 4, 5, 1, 2, 5, 4, 1]
-// Total Difference: 2 + 1 + 2 = 5
-
-// Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both 5-3 and 3-5 as 2, and so on.
-// The closest match will be the user with the least amount of difference.
-// Once you've found the current user's most compatible friend, display the result as a modal pop-up.
-// The modal should display both the name and picture of the closest match.

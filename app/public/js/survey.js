@@ -16,7 +16,7 @@ function filledForm() {
 function getFormData() {
     return {
         name: $('#name').val(),
-        image: $('#imageLink').val(),
+        photo: $('#imageLink').val(),
         scores: [
             $('#question1').val(),
             $('#question2').val(),
@@ -28,12 +28,12 @@ function getFormData() {
             $('#question8').val(),
             $('#question9').val(),
             $('#question10').val(),
-        ],
+        ].map(Number),
     };
 }
 
 function postFormData(formData) {
-    $.post('/api/public/friends', formData, response => {
+    $.post('/api/friends', formData, response => {
         showFriendModal(response);
     });
 }

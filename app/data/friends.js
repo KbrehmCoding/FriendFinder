@@ -1,4 +1,4 @@
-let friends = [
+[
     {
         "name": "person1",
         "photo": "https://image.flaticon.com/icons/png/512/219/219969.png",
@@ -94,7 +94,5 @@ let friends = [
             1,
             1
         ]
-    },
-];
-
-module.exports = friends;
+    }
+]
