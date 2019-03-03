@@ -94,5 +94,21 @@
             1,
             1
         ]
+    },
+    {
+        "name": "Krista Brehm",
+        "photo": "https://i.pinimg.com/originals/53/37/49/5337490ca1097befda8a3a81e0b77af4.jpg",
+        "scores": [
+            5,
+            5,
+            1,
+            5,
+            5,
+            1,
+            3,
+            1,
+            5,
+            5
+        ]
     }
 ]

@@ -16,9 +16,9 @@ module.exports = app => {
             return res.send({ error: true });
         }
         const friend = getFriendFromRequestBody(req.body);
+        const mostCompatibleFriend = getMostCompatibleFriend(friend);
         addFriendToDataFile(friend);
-        res.send(friend);
-        // res.send(getMostCompatibleFriend(friend));
+        res.send(mostCompatibleFriend);
     });
 };
 
@@ -45,4 +45,25 @@ function addFriendToDataFile(friend) {
     const friends = getFriendsData();
     friends.push(friend);
     fs.writeFileSync(path.join(__dirname, '../data/friends.js'), JSON.stringify(friends, null, 4));
+}
+
+function calculateFriendScoreDifference(scoresForFriend1, scoresForFriend2) {
+    let difference = 0;
+    for (let i = 0; i < scoresForFriend1.length; i++) {
+        difference += Math.abs(scoresForFriend1[i] - scoresForFriend2[i]);
+    }
+    return difference;
+}
+
+function getMostCompatibleFriend(newFriend) {
+    const friends = getFriendsData();
+    let mostCompatibleFriend, mostCompatibleFriendScoreDifference;
+    friends.forEach(friend => {
+        const friendScoreDifference = calculateFriendScoreDifference(newFriend.scores, friend.scores);
+        if (!mostCompatibleFriendScoreDifference || friendScoreDifference <= mostCompatibleFriendScoreDifference) {
+            mostCompatibleFriendScoreDifference = friendScoreDifference;
+            mostCompatibleFriend = friend;
+        }
+    });
+    return mostCompatibleFriend;
 }
